@@ -6,9 +6,11 @@
 require 'json'
 require 'logger'
 require 'sinatra/base'
-# require 'sinatra/multi_route'
+require 'sinatra/multi_route'
 
 class DebugApp < Sinatra::Base
+  register Sinatra::MultiRoute
+
   configure do
     set :raise_errors, true
     set :dump_errors, false
@@ -22,7 +24,7 @@ class DebugApp < Sinatra::Base
     [200, {}, ['this is the debug app']]
   end
 
-  post '/*' do
+  route :patch, :post, :put, :delete, '/*' do
     set_response_headers
 
     puts("#{request.url}#{request.query_string}")

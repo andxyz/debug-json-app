@@ -12,3 +12,9 @@ On multiple ports
 bundle install
 RACK_ENV=development bundle exec unicorn --config-file unicorn_conf.rb
 ```
+
+for developing
+
+```shell
+RACK_ENV=development bundle exec rackup config.ru --port 4567
+```

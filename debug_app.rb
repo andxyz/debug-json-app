@@ -19,7 +19,6 @@ class DebugApp < Sinatra::Base
     set :dump_errors, false
     set :show_exceptions, false
     use Rack::BounceFavicon
-    # use Rack::PostBodyContentTypeParser
   end
 
   get '/health-check' do
@@ -37,11 +36,8 @@ class DebugApp < Sinatra::Base
       puts("#{k}: #{v}")
     end
     puts("## body")
-    begin
-      puts(JSON.pretty_generate(JSON.parse(request.body.read)))
-    rescue
-      puts("??? invalid json ???")
-    end
+    body = request.body.read; request.body.rewind
+    print_body(body)
     puts("\n")
 
     [200, {}, ['']]
@@ -53,6 +49,13 @@ class DebugApp < Sinatra::Base
     @good_keys ||= [
       "HTTP_USER_AGENT",
     ]
+  end
+
+  def print_body(body)
+    begin puts(JSON.pretty_generate(JSON.parse(body))); return nil; rescue StandardError; nil; end
+    begin puts(XML.parse(body)); return nil; rescue StandardError; nil; end
+    begin puts(body); return nil; rescue StandardError; nil; end
+    puts("???") if body.present?
   end
 
   def set_response_headers

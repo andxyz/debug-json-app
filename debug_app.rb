@@ -53,8 +53,10 @@ class DebugApp < Sinatra::Base
 
   def print_body(body)
     begin puts(JSON.pretty_generate(JSON.parse(body))); return nil; rescue StandardError; nil; end
+    begin puts(URI.decode_www_form(body)); return nil; rescue StandardError; nil; end
     begin puts(XML.parse(body)); return nil; rescue StandardError; nil; end
     begin puts(body); return nil; rescue StandardError; nil; end
+
     puts("???") if body.present?
   end
 

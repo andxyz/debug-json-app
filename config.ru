@@ -1,4 +1,4 @@
-puts "RACK_ENV: #{ENV["RACK_ENV"]}"
+puts "RACK_ENV: #{ENV.fetch('RACK_ENV', 'development')}"
 
 Bundler.require(:default, ENV.fetch('RACK_ENV', 'development')) if defined?(Bundler)
 

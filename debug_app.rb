@@ -7,6 +7,9 @@ require 'json'
 require 'logger'
 require 'sinatra/base'
 require 'sinatra/multi_route'
+require 'rack'
+require 'rack/contrib'
+require 'active_support/all'
 
 class DebugApp < Sinatra::Base
   register Sinatra::MultiRoute
@@ -16,9 +19,10 @@ class DebugApp < Sinatra::Base
     set :dump_errors, false
     set :show_exceptions, false
     use Rack::BounceFavicon
+    # use Rack::PostBodyContentTypeParser
   end
 
-  get '/health_check' do
+  get '/health-check' do
     set_response_headers
 
     [200, {}, ['this is the debug app']]
@@ -33,8 +37,11 @@ class DebugApp < Sinatra::Base
       puts("#{k}: #{v}")
     end
     puts("## body")
-    output = JSON.pretty_generate(JSON.parse(request.body.read)) rescue request.body.read
-    puts(output)
+    begin
+      puts(JSON.pretty_generate(JSON.parse(request.body.read)))
+    rescue
+      puts("??? invalid json ???")
+    end
     puts("\n")
 
     [200, {}, ['']]

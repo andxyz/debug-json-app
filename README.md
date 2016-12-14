@@ -1,16 +1,18 @@
 
-A development app to log incoming json requests
+## A development app to log incoming requests
 
-```shell
-bundle install
-RACK_ENV=development bundle exec thin start --port 3333 --rackup config.ru -a0.0.0.0 --debug --log -
-```
-
-On multiple ports
+boot on multiple ports
 
 ```shell
 bundle install
 RACK_ENV=development bundle exec unicorn --config-file unicorn_conf.rb
+```
+
+boot on thin
+
+```shell
+bundle install
+RACK_ENV=development bundle exec thin start --port 4567 --rackup config.ru -a0.0.0.0 --debug --log -
 ```
 
 for developing

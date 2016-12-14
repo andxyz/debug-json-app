@@ -1,7 +1,7 @@
 ###
-# log post requests that hopefully send json
+# log requests that hopefully send some readable data
 #
-# RACK_ENV=development bundle exec thin start config.ru -a0.0.0.0 -p3000 --debug --log -
+# RACK_ENV=development bundle exec unicorn --config-file unicorn_conf.rb
 #
 require 'json'
 require 'logger'

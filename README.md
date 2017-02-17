@@ -5,8 +5,12 @@ boot on multiple ports
 
 ```shell
 bundle install
-RACK_ENV=development bundle exec unicorn --config-file unicorn_conf.rb
+RACK_ENV=development bundle exec unicorn --config-file unicorn_conf.rb config.ru
+# if you have trouble booting unicorn try
+cat log/*
 ```
+
+
 
 boot on thin
 

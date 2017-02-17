@@ -5,7 +5,7 @@ if ENV["RACK_ENV"] == "development"
   stderr_path APP_ROOT + "/log/unicorn.stderr.log"
 
   listen "localhost:4567"
-  listen "127.0.0.1:4567", tcp_nopush: true, :backlog => BACKLOG_SIZE # fake pulse
+  listen "127.0.0.1:4567", tcp_nopush: true, :backlog => BACKLOG_SIZE # fake some stuff
   listen "localhost:9090"
   listen "127.0.0.1:9090", tcp_nopush: true, :backlog => BACKLOG_SIZE # other
   listen '/tmp/http_logger_app.unicorn.sock', :backlog => BACKLOG_SIZE

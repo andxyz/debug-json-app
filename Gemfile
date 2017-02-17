@@ -6,7 +6,7 @@ gem 'sinatra', '~> 1.4.7', require: false
 gem 'sinatra-contrib', '~> 1.4.7', require: false
 gem 'rack-contrib', '~> 1.4', require: false
 gem 'thin'
-gem 'unicorn', '~> 5.2.0'
+gem 'unicorn', '~> 5.2'
 
 group(:development) do
   gem 'pry-byebug'

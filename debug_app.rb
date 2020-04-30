@@ -48,6 +48,7 @@ class DebugApp < Sinatra::Base
   def header_keys_to_display
     @good_keys ||= [
       "HTTP_USER_AGENT",
+      "HTTP_X_TASK_SCHEDULER_SECRET_TOKEN",
     ]
   end
 

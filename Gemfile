@@ -1,10 +1,16 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
+# ruby '2.7.2'
+
 gem 'activesupport', require: 'active_support/all'
-gem 'awesome_print'
+gem 'bootsnap'
+
 gem 'sinatra', '~> 1.4', require: false
 gem 'sinatra-contrib', '~> 1.4', require: false
 gem 'rack-contrib', '~> 1.4', require: false
+
 gem 'thin'
 gem 'unicorn'
 

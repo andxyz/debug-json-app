@@ -34,3 +34,9 @@ for developing
 ```shell
 RACK_ENV=development bundle exec rackup config.ru --port 4567
 ```
+
+For udp ports using `Socket.udp_server_loop`
+
+```shell
+rbenv exec bundle exec ./udp_listener.rb
+```

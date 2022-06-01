@@ -17,4 +17,8 @@ Bundler.require(:default, ENV.fetch('RACK_ENV', 'development')) if defined?(Bund
 
 require './debug_app'
 
-run ::DebugApp.new()
+begin
+  run ::DebugApp.new()
+rescue StandardError => e
+  raise e
+end
